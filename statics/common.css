@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.btn {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    min-width: 80px;
+    padding: 5px 10px;
+    border: 1px solid #d0d0d0;
+    box-sizing: border-box;
+    font-family: microsoft yahei;
+    color: #333;
+    background: #fff;   
+    outline: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: #fff;
+    background: #333;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.flex-col {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.flex-cover {
+    flex: 1;
+}

@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+html, body, div, p, form, ul, ol, li, span, img, input, button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 500 12px/1 microsoft yahei;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+img {
+    vertical-align: top;
+    outline: none;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+.f12 {
+    font-size: 12px;
+}
+
+.f14 {
+    font-size: 14px;
+}
+
+.f18 {
+    font-size: 18px;
+}
+
+.f24 {
+    font-size: 24px;
+}
+
+.f36 {
+    font-size: 36px;
+}

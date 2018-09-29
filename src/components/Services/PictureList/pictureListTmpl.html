@@ -1,0 +1,9 @@
+<ul class="inner">
+    <% for (var i = 0, len = pictures.length; i < len; i++) { %>
+        <li class="<%= pictures[ i ].status %>">
+            <div class="bg">
+                <img src="<%= pictures[ i ].thumb %>" data-pid="<%= pictures[ i ].id %>" />
+            </div>
+        </li>
+    <% } %>
+</ul>

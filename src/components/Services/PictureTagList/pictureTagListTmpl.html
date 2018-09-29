@@ -1,0 +1,5 @@
+<% for (var i = 0, len = tags.length; i < len; i++) { %>
+    <li>
+        <a class="<%= tags[ i ].status %>" data-sign="<%= tags[ i ].sign %>" data-tagid="<%= tags[ i ].id %>" href="javascript:;"><%= tags[ i ].name %></a>
+    </li>
+<% } %>

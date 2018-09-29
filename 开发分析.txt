@@ -1,0 +1,369 @@
+页面功能
+    1. 首先弹出个弹出框组件，并且出现蒙层和具有可拖拽交互
+        对话框内部具有表单验证组件和上传文件组件
+    2. 目前只支持1个作品有1个模板(页)
+    3. 页里面显示的内容就是元素，目前只支持图片、文字两种
+    4. 点击图片时，出现选择图片消息框，里面有默认的后端传的图片供奇选择
+    5. 点击文本时，页左上角出现文本选择框，里面有“双击此处编辑”的字样
+    6. 对每个元素双击编辑、按del键则删除，固有的交互是拖拽
+    7. 双击文本元素时候，可以输入文本，当文本元素失去焦点时候取消编辑状态，鼠标单击、双击、拖拽都是进入编辑状态，移动鼠标上去出现选择状态
+    8. 双击图片元素时候，弹出选择图片消息框，选中图片
+    9. 每个元素有名称、样式、动画属性
+    10. 样式包括载体样式和元素样式
+    11. 载体样式包括宽、高、坐标、显示状态、透明度、旋转角度、背景色
+    12. 文本元素样式字号、字体颜色、对齐方式、行高、间距
+    13. 动画属性包括动画时间、延迟时间、动画次数、选择动画类型（入场和出场）
+    14. 预览
+
+
+
+先搭骨架   
+    backbone.js: 组织代码，分层，减少大量dom操作，组件化, 路由，事件系统
+    flux.js: 数据管理框架，扁平化的梳理应用逻辑操作
+    modular.js: 避免全局环境被污染，确定模块的具体依赖，异步加载模块不会阻塞
+    parcel.js: 前端工程化工具，包括解析es6、智能分析amd模块并打包合并、代码分割、代码热替换、友好错误提示
+    anim.js: js高效动画
+    promise.js: 让异步代码更具可读、可维护性
+    fetch.js: 统一对http请求的成功、http异常、业务异常处理
+
+
+
+数据操作
+    基于小型应用可以
+      如果是多模型、多视图应用，一个视图接收多个模型的数据，一个模型通知多个视图，如果是多个controller控制1个model，但是产生出不是想要的数据，调试起来麻烦
+      如果一个子视图被嵌套很深，如果想取得一个model，那需要在多个嵌套的子视图中传递该model
+    
+    使用flux架构解决的原因
+      数据流清楚，统一集中管理数据、解耦组件、有利于追踪数据
+      数据类型分为前端交互数据和后端业务数据，前端交互数据又分为全局和局部
+      将全局前端交互数据和后端业务数据放到store中，
+      优势就是：对于切换频率高的页面，将数据放到store而不放到组件中是为了避免频繁的请求，等待
+
+    展示组件中所有需要修改状态操作都通过调用callback完成
+
+    因为是只有一个页面，所以全局交互数据和局部交互数据是一样的
+      页面局部交互状态：
+        homePage
+          {
+            modal_visible: false (true: 可见 | false: 不可见),
+            tip_visible: false (true: 可见 | false: 不可见)
+          }
+      组件局部交互状态
+        pictureTag
+          {
+            select_picture_tag_id
+          }
+        picture
+          {
+            select_picture_id
+          }
+
+      后台业务数据
+        picture_tags
+          [{
+            id,
+            name,
+            sign,
+            description,
+            is_remove_state,
+            create_time
+          }]
+        pictures
+          [{
+            id,
+            url,
+            thumb,
+            tag_name,
+            is_remove_state,
+            create_time
+          }]
+        text_element
+          [{
+            id: 随机生成,
+            name: '文字+id' (值都是默认值),
+            style: {
+              width,
+              height,
+              left: 0,
+              top: 0,
+              status: 0,
+              opacity: 1,
+              rotate: 0,
+              fontsize: 20,
+              color: #000,
+              align: left,
+              line_height: 30,
+              letter_spacing: 2
+            },
+            animate: {
+              animate_entrance: 'fadeIn',
+              animate_appearance: 'fadeOut',
+              animate_duration: 0.1,
+              animate_delay: 0,
+              animate_count: 1
+            }
+          }]
+
+        picture_element
+          [{
+            id: 随机生成,
+            name: '图片+id' (值都是默认值),
+            style: {
+              width,
+              height,
+              left: 0,
+              top: 0,
+              status: 0,
+              opacity: 1,
+              rotate: 0
+            },
+            animate: {
+              animate_entrance: 'fadeIn',
+              animate_appearance: 'fadeOut',
+              animate_duration: 0.1,
+              animate_delay: 0,
+              animate_count: 1
+            }
+          }]
+
+
+
+    定义action：描述产生业务属性和状态的动作
+      1. 创建图片元素弹出框
+        {
+          type: 'CREATE_MODAL',
+          payload: {
+            modal_action_mode: 0
+          }
+        }
+      2. 删除图片元素弹出框
+        {
+          type: 'REMOVE_MODAL',
+          payload: {
+            modal_action_mode: 1
+          }
+        }
+      3. 创建Tip
+        {
+          type: 'CREATE_TIP',
+          payload: {
+            tip_action_mode: 0
+          }
+        }
+      4. 删除Tip
+        {
+          type: 'REMOVE_TIP',
+          payload: {
+            tip_action_mode: 1
+          }
+        }
+
+      5. 加载所有图片标签
+        {
+          type: 'LOAD_PICTURE_TAGS',
+          payload: {}        
+        }
+
+      6. 选中图片标签
+        {
+          type: 'SELECTED_PICTURE_TAG',
+          payload: {
+            tagId
+          }
+        }
+
+      7. 加载图片列表
+        {
+          type: 'LOAD_PICTURES',
+          payload: {
+            tagName
+          }
+        }
+      
+      8. 选中图片列表下的图片
+        {
+          type: 'SELECTED_PICTURE',
+          payload: {
+            pictureId
+          }
+        }
+
+      9. 创建图片元素
+        {
+          type: 'CREATE_PICTURE_ELEMENT',
+          payload: {
+            id: 随机生成,
+            name: '图片+id' (值都是默认值),
+            url,
+            style: {
+              width: 640,
+              height: 795,
+              left: 0,
+              top: 0,
+              status: 'visible',
+              opacity: 1,
+              rotate: 0
+            },
+            animate: {
+              animate_entrance: 'fadeIn',
+              animate_appearance: 'fadeOut',
+              animate_duration: 0.1,
+              animate_delay: 0,
+              animate_count: 1
+            }
+          }
+        }
+
+      10. 修改图片元素
+        {
+          type: 'UPDATE_PICTURE_ELEMENT',
+          id,
+          payload: {
+            name,
+            style: {},
+            animate: {}
+          }
+        }
+
+      11. 删除图片元素
+        {
+          type: 'DELETE_PICTURE_ELEMENT',
+          id
+        }
+
+      12. 创建文本元素
+        {
+          type: 'CREATE_TEXT_ELEMENT',
+          payload: {
+            id: 随机生成,
+            name: '文字+id' (值都是默认值),
+            style: {
+              width,
+              height,
+              left: 0,
+              top: 0,
+              status: 0,
+              opacity: 1,
+              rotate: 0,
+              fontsize: 20,
+              color: #000,
+              align: left,
+              line_height: 30,
+              letter_spacing: 2
+            },
+            animate: {
+              animate_entrance: 'fadeIn',
+              animate_appearance: 'fadeOut',
+              animate_duration: 0.1,
+              animate_delay: 0,
+              animate_count: 1
+            }
+          }
+        }
+
+      13. 修改文本元素
+        {
+          type: 'UPDATE_TEXT_ELEMENT',
+          id,
+          payload: {
+            name,
+            style: {},
+            animate: {}
+          }
+        }
+
+      14. 删除文本元素
+        {
+          type: 'DELETE_TEXT_ELEMENT',
+          id
+        }
+
+      15. 上传图片
+        {
+          type: 'UPLOAD',
+          payload: {
+            url,
+            thumb,
+            name
+          }
+        }
+
+数据模型     
+  
+
+
+        Page(前端自定义):
+          id,
+          page_name,
+          page_height
+
+        Element(前端自定义)
+          id,
+          page_id,
+          type: 'text',
+          name,
+          width,
+          eight,
+          left,
+          top,
+          status,
+          opacity,
+          rotate,
+          fontsize,
+          color,
+          align,
+          line_height,
+          letter_space,
+          animate_duration,
+          animate_delay,
+          animate_count,
+          animate_entrance,
+          animate_appearance   
+
+划分组件
+  组件：具有独立交互区域的结构
+  组件按照数据类型可分为业务组件和ui组件
+  业务组件可分为容器组件和展示组件
+  ui组件只是展示组件
+  容器组件和展示区别就是容器组件具有直接请求数据或修改数据，展示组件的数据只能由容器组件传递，修改数据只能调用传递的callback
+  
+
+  定义业务组件：
+    NavigationBar
+    PageList
+    PagePanel
+      PageElementList
+        TextElement
+        ImageElement
+    PageElementPropertyPanel
+      StylePropertyPanel
+        BasicStylePropertyPanel
+        TextStylePropertyPanel
+      AnimatePropertyPanel
+        BasicAnimatePropertyPanel
+        AnimateTypePropertyPanel
+          EntrancePropertyPanel
+          AppearancePropertyPanel
+
+  定义UI组件
+    Modal(弹出框)
+    Tip(文本提示)
+    CompressUpload(压缩上传)
+    Drag(拖拽)
+    Resize(拉伸变形)
+    ScrollToBottomLoad(滚动到底部加载)
+    RenderLotOptimize(滚动显示优化)
+
+布局
+  三列通底等高，中间自适应屏幕宽度
+
+组织CSS
+  分为3种
+  1. base: 重置元素样式和设置原子样式，比如内外边距为0，f12{font-size:12px} ml10 { margin-left:10px }
+  2. common: 搜索框、文本框、按钮、列表抽出相同的样式，不同的样式定义一个专属类，也在common层
+  3. page: 按照页面区域
+上到生产环境的时候，合并成1个文件，减少http请求
+
+
+使用Backbone的View，如果view对象绑定的dom元素被删除后，再次渲染的时候，事件需要重新绑定
+如果需要强制model在没有改变值情况下触发回调，则绑定change事件

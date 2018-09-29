@@ -1,0 +1,79 @@
+<div class="props-animate-list-setting-panel">
+    <div class="marked">动画</div>
+    <ul class="list">
+        <li class="flex-row">
+            <span class="text-patch">动画时间</span>
+            <input class="range-patch" type="range" step="0.1" min="0.1" max="10" value="<%= duration %>" />
+            <input class="duration" type="number" step="0.1" min="0.1" max="10" value="<%= duration %>" />
+        </li>
+        <li class="flex-row">
+            <span class="text-patch">延迟时间</span>
+            <input class="range-patch" type="range" min="0" max="20" value="<%= delay %>" />
+            <input class="delay" type="number" step="1" min="0" max="20" value="<%= delay %>" />
+        </li>
+        <li class="flex-row">
+            <span class="text-patch">动画次数</span>
+            <select class="count" value="<%= count %>">
+                <option value="1">1次</option>
+                <option value="2">2次</option>
+                <option value="3">3次</option>
+                <option value="4">4次</option>
+                <option value="5">5次</option>
+                <option value="0">永久循环</option>
+            </select>
+        </li>
+        <li>
+            <span class="text-patch">选择动画</span>
+        </li>
+        <li class="type">
+            <ul class="type-hd-tab flex-row">
+                <li class="active"><a href="javascript:;">进入</a></li>
+                <li><a href="javascript:;">退出</a></li>
+            </ul>
+            <div>
+                <ul class="type-bd-tab">
+                   <li>
+                        <a href="javascript:;">
+                            <span>无</span>
+                        </a>
+                   </li>         
+                   <li>
+                        <a href="javascript:;">
+                            <span>渐显</span>
+                        </a>
+                   </li>         
+                   <li>
+                        <a href="javascript:;">
+                           <span>上方渐显</span> 
+                        </a>
+                   </li>         
+                   <li>
+                        <a href="javascript:;">
+                            <span>下方渐显</span>
+                        </a>
+                   </li>         
+                   <li>
+                        <a href="javascript:;">
+                            <span>左边渐显</span>
+                        </a>
+                   </li>         
+                   <li>
+                        <a href="javascript:;">
+                            <span>右边渐显</span>
+                        </a>
+                   </li>    
+                   <li>
+                        <a href="javascript:;">
+                            <span>X轴翻入</span>
+                        </a>
+                    </li>         
+                    <li>
+                        <a href="javascript:;">
+                            <span>Y轴翻入</span>
+                        </a>
+                    </li>        
+                </ul>    
+            </div>
+        </li>
+    </ul>
+</div>

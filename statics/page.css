@@ -1,0 +1,414 @@
+@charset "utf-8";
+
+.home {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+header {
+    height: 54px;
+    background: #232427;
+}
+
+.page-item {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    padding: 4px 0;
+    min-height: 150px;
+    cursor: pointer;
+}
+
+.page-item:hover, .page-item.active {
+    background: rgba(0, 0, 0,.2);
+}
+
+.header-inner {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    width: 200px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.element-item {
+    width: 64px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.element-item:before {
+    display: inline-block;
+    content: "";
+    width: 16px;
+    height: 16px;
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    vertical-align: top;
+}
+
+.element-item span {
+    display: block;
+}
+
+.element-picture:before {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAdklEQVQ4jaWT3QrAIAhGa+y9683PLpbg8odWglTyeTKrClAO7B5j3cznOtldV2DIap5Wl1WwdKwMsNTc6AjLTd1pYvuseK1M3oZ7ca3HA4iICSLxngG0qCuIl2wAnkggXrIBRKIexA0gEmVOBfhz75MhD2n7Sz/zBU3gwgUOhAAAAABJRU5ErkJggg==);
+}
+
+.element-text:before {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAP0lEQVQ4jWP8////GQYGBmMG8sB6JgYGhl9kamZgYGD4w/j//398CmCSjLgUMFFg+6gBowYMJwNYCMhvI2QAAFhWC3Vw6+rXAAAAAElFTkSuQmCC);
+}
+
+.preview:before {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAn0lEQVQ4jaXSMWoCURQF0BeXkTZNCg0qsbLPHlNYWAlhMDIpdCtuRCSZ8aSQgZ/BoP974ZX3FJcXWOKAT7wici7Q+JuvHChczgk1pqVACm0wLgVSaI2XUiCFKoxKgS4tPvD4AFGe/eCOckTEdynQRMQiIt5yN2icP/cpd8QWKzwreKQKw37xFqDG5L9iCvz0ilvMrhVT4B1H7DC/tdjdL+3W4U3Tnj5JAAAAAElFTkSuQmCC);
+}
+
+.display {
+    position: relative;
+    background: #e1e1e1;
+}
+
+.display-actual-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.edit-panel {
+    width: 300px;
+    background: #f4f4f4;
+}
+
+.edit-element-inner .props-hd-tab {
+    padding-top: 4px;
+    background: #d3d4d6;
+    height: 36px;
+}
+
+.edit-element-inner .props-hd-tab li {
+    width: 50%;
+    height: 100%;
+    font-size: 14px;
+    text-align: center;
+}
+
+.props-hd-tab a {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    height: 100%;
+}
+
+.props-hd-tab .active {
+    background: #f4f4f4;
+}
+
+.props-bd-tab .props-style-setting-panel .props-name-setting-patch {
+    padding: 15px;
+    font-size: 12px;
+    justify-content: space-between;
+}
+
+.props-name-setting-patch .props-element-name {
+    display: -webkit-box;
+    -webkit-box-pack: start;
+    -webkit-box-align: center;
+}
+
+.props-name-setting-patch .props-element-value {
+    padding: 0 5px;
+    width: 180px;
+    height: 26px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.props-bd-tab .props-style-setting-panel .props-style-list-setting-panel,
+.props-bd-tab .props-animate-setting-panel .props-animate-list-setting-panel {
+    font-size: 12px;
+}
+
+.props-style-list-setting-panel .marked,
+.props-animate-list-setting-panel .marked {
+    padding-left: 15px;
+    line-height: 40px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    box-sizing: border-box;
+}
+
+.props-style-list-setting-panel .list {
+    padding: 16px 16px 0;
+}
+
+.props-style-list-setting-panel .list li,
+.props-animate-list-setting-panel .list > li {
+    margin-bottom: 16px;
+    justify-content: space-between;
+}
+
+.props-style-list-setting-panel .list .text-patch,
+.props-animate-list-setting-panel .list .text-patch {
+    display: -webkit-box;
+    -webkit-box-pack: start;
+    -webkit-box-align: center;
+}
+
+.props-style-list-setting-panel .list .code-panel {
+    width: 180px;
+    justify-content: space-between;
+}
+
+.props-style-list-setting-panel .list .code-panel .code-name  {
+    display: inline-block;
+    width: 24px;
+    line-height: 26px;
+}
+
+.props-style-list-setting-panel .list .code-panel .code-value {
+    width: 40px;
+    height: 26px;
+    padding-left: 5px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.props-style-list-setting-panel .list .visibility-patch {
+    width: 180px;
+}
+
+.props-style-list-setting-panel .list .visibility-patch select {
+    width: 100%;
+    height: 26px;
+    border: 1px solid #999;
+    font-size: 12px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.props-style-list-setting-panel .list .opacity-patch,
+.props-style-list-setting-panel .list .rotate-patch {
+    width: 180px;
+    justify-content: space-between;
+}
+
+.props-style-list-setting-panel .list .opacity-patch input[type="range"].
+.props-style-list-setting-panel .list .rotate-patch input[type="range"] {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    width: 130px;
+}
+
+.props-style-list-setting-panel .list .opacity-patch input[type="number"],
+.props-style-list-setting-panel .list .rotate-patch input[type="number"] {
+    width: 45px;
+    height: 26px;
+    padding-left: 3px;
+    line-height: 26px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+}
+
+.props-style-list-setting-panel .list .replace-url-btn {
+    width: 100%;
+    height: 30px;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+}
+
+.props-animate-list-setting-panel .list {
+    padding: 16px 0;
+}
+
+.props-animate-list-setting-panel .list > li {
+    padding: 0 16px;
+}
+
+.props-animate-list-setting-panel .list > .type {
+    padding: 0;
+}
+
+.props-animate-list-setting-panel .list .range-patch {
+    width: 130px;
+}
+
+.props-animate-list-setting-panel .list .duration,
+.props-animate-list-setting-panel .list .delay {
+    width: 43px;
+    height: 26px;
+    padding-left: 3px;
+    border: 1px solid #999;
+    line-height: 26px;
+    box-sizing: border-box;
+}
+
+.props-animate-list-setting-panel .list .count {
+    width: 196px;
+    height: 26px;
+    border: 1px solid #999;
+    outline: none;
+}
+
+.props-animate-list-setting-panel .list .type-hd-tab {
+    height: 30px;
+    padding-top: 4px;
+    background: #d3d4d6;
+    font-size: 14px;
+}
+
+.props-animate-list-setting-panel .list .type-hd-tab li {
+    width: 50%;
+    height: 100%;
+}
+
+.props-animate-list-setting-panel .list .type-hd-tab a {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    height: 100%;
+}
+
+.type-hd-tab .active {
+    background: #f4f4f4;
+}
+
+.type-bd-tab {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 16px 16px 0;
+}
+
+.type-bd-tab > li {
+    width: 25%;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.type-bd-tab > li a {
+    display: block;
+    height: 100%;
+}
+
+.type-bd-tab > li a:before {
+    display: inline-block;
+    content: "";
+    width: 28px;
+    height: 31px;
+    margin-bottom: 10px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAfCAMAAADDR10IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAxlBMVEUAAAAzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzOurq739/eXl5f9/f3///+MjIzj4+NxcXHFxcXExMRwcHCpqan8/PzPz88zMzP7+/vBwcHNzc2UlJSoqKhtbW2Kiorh4eH19fUAAAC/CflZAAAAKXRSTlMAMbT1FJn9lwZz703bTCq3lfta7ez+z/rNzElX6xCM+SlI1QRxcK7yrcxF/1sAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAA2ElEQVQoz+2T1xKCMBQFL6KoKFWxYsEuIRYUFSzw/19lRYMh4w+4j9mHM3NnA/CBy/B8hoM0sjlhbttzIZ+lVKEoIgffcJBYLCRdqbxY4hfLRVkilKys1pjA3ShyPKZqW/zFVlMf03oFeZjCQ1UdQDJ2OJWdIUHNxQzcGggOSzoC7DGT/V/+lOzbHurQ8FnSb0LLCNJdYLQA2ubRppV9NNv3TjrdHtXQqdftvOs7J5b9s9In4rQGlzBW4WVgJasejsRnhB4Sx0P6r9zyjaI4WAp5Mp3OZOLhComwdVn8WUbPAAAAAElFTkSuQmCC) no-repeat 0 0;
+    vertical-align: top;
+}
+
+.type-bd-tab > li a span {
+    display: block;
+    font-size: 12px;
+}
+
+.picture-tag-list li {
+    margin-right: 30px;
+}
+
+.picture-tag-list li:last-of-type {
+    margin-right: 0;
+}
+
+.picture-tag-list li a {
+    display: inline-block;
+    font-size: 14px;
+    padding: 6px;
+    color: #333;
+}
+
+.picture-tag-list li a.active,
+.picture-tag-list li a:hover {
+    background: #333;
+    color: #fff;
+}
+
+.picture-list {
+    width: 817px;
+    height: 470px;
+    overflow: auto;
+}
+
+.picture-list .inner {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.picture-list li {
+    width: 130px;
+    height: 204px;
+    margin: 0 30px 30px 0;
+    border: 3px solid transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.picture-list li.active {
+    border-color: #1abc9c;
+    background: transparent;
+}
+
+.picture-list .bg {
+    height: 100%;
+    background-color: #e0e0e0;
+}
+
+.picture-list img {
+    width: 100%;
+    height: 100%;
+}
+
+.element-pitch {
+    position: absolute;
+    z-index: 9999;
+    text-align: center;
+}
+
+.element-pitch .inner {
+    height: 100%;   
+}
+
+.picture-element-pitch .inner {
+    box-shadow: 0 2px 8px 1px rgba(35, 35, 37, .12);
+    background: #fff;    
+}
+
+.text-element-pitch .inner {
+    background: transparent;    
+}
+
+.element-pitch img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    pointer-events: none;
+}
+
+.element-pitch span {
+    font-family: Arial;
+    font-size: 36px;
+    color: rgb(144, 144, 144);
+    outline: none;
+}

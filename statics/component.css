@@ -1,0 +1,69 @@
+.tip {
+    position: absolute;    
+    padding: 15px 35px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background: rgba(30, 30, 30, .9);
+}
+
+.zask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(32,33,35,.9);
+    z-index: 1;
+    cursor: pointer;
+}   
+
+.modal-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.modal-wrap:after {
+    display: inline-block;
+    content: '';
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.modal-content {    
+    display: inline-block;
+    background: #fff;
+    vertical-align: middle;
+}
+
+.modal-content .hd {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e1e1e1;
+    box-sizing: border-box;
+}
+
+.modal-content .bd {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.modal-content .fd {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 30px; 
+    box-sizing: border-box;
+}
+
+.modal-content .fd .btn-sure {
+    margin-right: 15px;
+}

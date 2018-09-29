@@ -1,0 +1,15 @@
+1、设计两个交互组件时，如果出现了都为document.body绑定的相同事件，如果不处理的话，那么执行哪个组件时都将同时触发两个回调，不能在每个回调写e.stopImmediatePropagation(),否则另一个回调将不好被调用，最好的解决办法就是两个组件抛出的回调中设置属性，然后判断该属性才执行
+
+2、使用原生获取transform，如果用jq获取，将得到的是一个矩阵
+
+3. jquery的position是基于margin来计算的
+
+4. 在view中绑定事件，记得销毁冒泡，在backbone中没有对事件进行消除冒泡
+
+5. Backbone的View绑定的元素如果被删除，那么在此使用的时候需要重新调用_ensureElement来进行绑定事件
+
+6. Backbone的Model的属性触发事件必须是此属性值改变，如果想不改变就触发，那只能绑定change事件
+
+7. Backbone的Model如果被两个View绑定，如果2个view都可以更新model，那么避免在该
+
+8. Flux的store没有自动验证和触发某一属性变化事件和命名空间属性事件
